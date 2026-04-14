@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |----------------------------------------------------------------------
@@ -9,8 +10,8 @@ use App\Http\Controllers\AuthController;
 |----------------------------------------------------------------------
 */
 Route::middleware('guest')->group(function () {
-    Route::get('/',      [AuthController::class, 'loginForm'])->name('login');
-    Route::get('/login', [AuthController::class, 'loginForm']);
+    Route::get('/',      [AuthController::class, 'loginForm']);
+    Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
 });
 
@@ -22,7 +23,5 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });

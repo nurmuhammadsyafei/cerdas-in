@@ -30,6 +30,7 @@
                         class="form-control @error('email') is-invalid @enderror"
                         placeholder="contoh@email.com"
                         required
+                        value="test@example.com"
                         autofocus
                     >
                 </div>
@@ -42,6 +43,7 @@
                         name="password"
                         class="form-control @error('password') is-invalid @enderror"
                         placeholder="••••••••"
+                        value="password"
                         required
                     >
                 </div>
