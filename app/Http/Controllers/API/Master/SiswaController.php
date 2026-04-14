@@ -22,6 +22,10 @@ class SiswaController extends Controller
             });
         }
 
+        if ($request->boolean('all')) {
+            return response()->json(['data' => $query->orderBy('nama_lengkap')->get()]);
+        }
+
         $siswa = $query->orderBy('nama_lengkap')->paginate(15);
 
         return response()->json($siswa);

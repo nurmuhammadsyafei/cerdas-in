@@ -7,17 +7,22 @@
     <title>{{ config('app.name', 'Cerdas-In') }} — @yield('title')</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    @stack('styles')
     <style>
         :root {
-            --sidebar-bg: #1a237e;
-            --sidebar-hover: #283593;
-            --sidebar-active: #ffc107;
+            --sidebar-bg: #083053;
+            --sidebar-hover: #17aeae;
+            --sidebar-active: #ffffff;
             --sidebar-width: 240px;
         }
 
         body {
             min-height: 100vh;
             background: #f4f6f9;
+            font-family: 'Nunito', sans-serif;
         }
 
         /* Sidebar */
@@ -43,7 +48,7 @@
             font-size: 1.3rem;
             font-weight: 800;
             letter-spacing: 2px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
         }
 
         .sidebar-nav {
@@ -78,7 +83,7 @@
 
         .nav-item-label.active {
             background: var(--sidebar-active);
-            color: #1a237e;
+            color: #1E3D59;
             font-weight: 700;
         }
 
@@ -126,11 +131,44 @@
         .topbar-title {
             font-weight: 600;
             font-size: 1rem;
-            color: #1a237e;
+            color: #1E3D59;
         }
 
         .topbar-toggle {
-            background: none;border: none; cursor: pointer; color: #1a237e; font-size: 1.25rem; padding: 0;
+            background: none;border: none; cursor: pointer; color: #1E3D59; font-size: 1.25rem; padding: 0;
+        }
+
+        /* Bootstrap btn-primary override → cyan */
+        .btn-primary {
+            background-color: #1E3D59;
+            border-color: #1E3D59;
+            color: #fff;
+            font-weight: 600;
+        }
+        .btn-primary:hover, .btn-primary:focus, .btn-primary:active,
+        .btn-primary.active, .show > .btn-primary.dropdown-toggle {
+            background-color: #17aeae;
+            border-color: #17aeae;
+            color: #fff;
+        }
+        .btn-outline-primary {
+            color: #1E3D59;
+            border-color: #1E3D59;
+        }
+        .btn-outline-primary:hover {
+            background-color: #1E3D59;
+            border-color: #1E3D59;
+            color: #fff;
+        }
+        .btn-success {
+            background-color: #1E3D59;
+            border-color: #1E3D59;
+            color: #fff;
+        }
+        .btn-success:hover, .btn-success:focus, .btn-success:active {
+            background-color: #17aeae;
+            border-color: #17aeae;
+            color: #10139B;
         }
 
         /* Main content */
