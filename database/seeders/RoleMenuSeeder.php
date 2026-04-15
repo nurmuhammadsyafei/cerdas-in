@@ -36,7 +36,7 @@ class RoleMenuSeeder extends Seeder
 
             // Staff TU → Master, Laporan
             'staff_tu' => [
-                'master.siswa', 'master.guru', 'master.kelas',
+                'master.siswa', 'master.guru', 'master.sekolah', 'master.kelas',
                 'laporan.nilai', 'laporan.absensi',
             ],
 

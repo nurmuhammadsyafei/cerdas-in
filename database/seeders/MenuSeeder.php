@@ -26,8 +26,9 @@ class MenuSeeder extends Seeder
         $children = [
             // Data Master
             ['parent' => 'master',   'name' => 'master.siswa',           'label' => 'Siswa',           'icon' => 'bi bi-people',              'route_name' => 'master.siswa.index',       'sort_order' => 1],
-            ['parent' => 'master',   'name' => 'master.guru',            'label' => 'Guru',            'icon' => 'bi bi-person-badge',        'route_name' => null,                       'sort_order' => 2],
-            ['parent' => 'master',   'name' => 'master.kelas',           'label' => 'Kelas',           'icon' => 'bi bi-building',            'route_name' => null,                       'sort_order' => 3],
+            ['parent' => 'master',   'name' => 'master.guru',            'label' => 'Guru',            'icon' => 'bi bi-person-badge',        'route_name' => 'master.guru.index',        'sort_order' => 2],
+            ['parent' => 'master',   'name' => 'master.sekolah',         'label' => 'Sekolah',         'icon' => 'bi bi-building',            'route_name' => 'master.sekolah.index',     'sort_order' => 3],
+            ['parent' => 'master',   'name' => 'master.kelas',           'label' => 'Kelas',           'icon' => 'bi bi-grid',                'route_name' => null,                       'sort_order' => 4],
             // Akademik
             ['parent' => 'akademik', 'name' => 'akademik.mapel',         'label' => 'Mata Pelajaran',  'icon' => 'bi bi-book',                'route_name' => null,                       'sort_order' => 1],
             ['parent' => 'akademik', 'name' => 'akademik.jadwal',        'label' => 'Jadwal',          'icon' => 'bi bi-calendar3',           'route_name' => null,                       'sort_order' => 2],
@@ -47,7 +48,7 @@ class MenuSeeder extends Seeder
         $parentIds = Menu::whereNull('parent_id')->pluck('id', 'name');
 
         foreach ($children as $c) {
-            Menu::firstOrCreate(
+            Menu::updateOrCreate(
                 ['name' => $c['name']],
                 [
                     'parent_id'  => $parentIds[$c['parent']] ?? null,

@@ -112,6 +112,9 @@ const table = $('#tbl-siswa').DataTable({
             searchable: false,
             render: (code, type, row) => `
                 <div class="d-flex gap-1 justify-content-center">
+                    <a href="${EDIT_BASE}/${code}/pdf" target="_blank" class="btn btn-sm btn-info" title="Cetak PDF">
+                        <i class="bi bi-printer"></i>
+                    </a>
                     <a href="${EDIT_BASE}/${code}/edit" class="btn btn-sm btn-warning" title="Edit">
                         <i class="bi bi-pencil"></i>
                     </a>

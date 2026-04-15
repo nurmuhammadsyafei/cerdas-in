@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Siswa;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class SiswaSeeder extends Seeder
 {
@@ -33,7 +34,7 @@ class SiswaSeeder extends Seeder
         ];
 
         foreach ($data as $row) {
-            Siswa::create($row);
+            Siswa::create(array_merge($row, ['user_code' => Str::uuid()->toString()]));
         }
     }
 }

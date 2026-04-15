@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -87,7 +88,10 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($users as $data) {
-            User::firstOrCreate(['email' => $data['email']], $data);
+            User::firstOrCreate(
+                ['email' => $data['email']],
+                array_merge($data, ['user_code' => Str::uuid()->toString()])
+            );
         }
     }
 }

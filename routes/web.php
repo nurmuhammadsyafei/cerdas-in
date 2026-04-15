@@ -5,6 +5,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\APP\Master\SiswaController as AppSiswaController;
 use App\Http\Controllers\API\Master\SiswaController as ApiSiswaController;
+use App\Http\Controllers\APP\Master\SekolahController as AppSekolahController;
+use App\Http\Controllers\API\Master\SekolahController as ApiSekolahController;
+use App\Http\Controllers\APP\Master\GuruController as AppGuruController;
+use App\Http\Controllers\API\Master\GuruController as ApiGuruController;
 use App\Http\Controllers\APP\Settings\UserController as AppUserController;
 use App\Http\Controllers\API\Settings\UserController as ApiUserController;
 use App\Http\Controllers\APP\Settings\HakAksesController as AppHakAksesController;
@@ -38,9 +42,17 @@ Route::middleware('auth')->group(function () {
     |------------------------------------------------------------------
     */
     Route::prefix('master')->name('master.')->group(function () {
-        Route::get('siswa',              [AppSiswaController::class, 'index'])->name('siswa.index');
-        Route::get('siswa/create',       [AppSiswaController::class, 'create'])->name('siswa.create');
-        Route::get('siswa/{siswa}/edit', [AppSiswaController::class, 'edit'])->name('siswa.edit');
+        Route::get('siswa',               [AppSiswaController::class, 'index'])->name('siswa.index');
+        Route::get('siswa/create',        [AppSiswaController::class, 'create'])->name('siswa.create');
+        Route::get('siswa/{siswa}/edit',  [AppSiswaController::class, 'edit'])->name('siswa.edit');
+        Route::get('siswa/{siswa}/pdf',   [AppSiswaController::class, 'pdf'])->name('siswa.pdf');
+
+        Route::get('sekolah',                [AppSekolahController::class, 'index'])->name('sekolah.index');
+        Route::get('sekolah/create',         [AppSekolahController::class, 'create'])->name('sekolah.create');
+        Route::get('sekolah/{sekolah}/edit', [AppSekolahController::class, 'edit'])->name('sekolah.edit');
+
+        Route::get('guru',               [AppGuruController::class, 'index'])->name('guru.index');
+        Route::get('guru/{user}/edit',   [AppGuruController::class, 'edit'])->name('guru.edit');
     });
 
     Route::prefix('settings')->name('settings.')->group(function () {
@@ -67,6 +79,18 @@ Route::middleware('auth')->group(function () {
         Route::match(['POST', 'PUT'],
                      'siswa/{siswa}',          [ApiSiswaController::class, 'update'])->name('siswa.update');
         Route::delete('siswa/{siswa}',         [ApiSiswaController::class, 'destroy'])->name('siswa.destroy');
+
+        Route::get('sekolah',                  [ApiSekolahController::class, 'index'])->name('sekolah.index');
+        Route::post('sekolah',                 [ApiSekolahController::class, 'store'])->name('sekolah.store');
+        Route::get('sekolah/{sekolah}',        [ApiSekolahController::class, 'show'])->name('sekolah.show');
+        Route::match(['POST', 'PUT'],
+                     'sekolah/{sekolah}',      [ApiSekolahController::class, 'update'])->name('sekolah.update');
+        Route::delete('sekolah/{sekolah}',     [ApiSekolahController::class, 'destroy'])->name('sekolah.destroy');
+
+        Route::get('guru',                     [ApiGuruController::class, 'index'])->name('guru.index');
+        Route::get('guru/{user}',              [ApiGuruController::class, 'show'])->name('guru.show');
+        Route::match(['POST', 'PUT'],
+                     'guru/{user}',            [ApiGuruController::class, 'update'])->name('guru.update');
     });
 
     Route::prefix('api/settings')->name('api.settings.')->group(function () {
